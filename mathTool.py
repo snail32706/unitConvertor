@@ -1,4 +1,3 @@
-import tkinter as tk
 import numpy as np
 from scipy.constants import physical_constants
 import time
@@ -7,9 +6,9 @@ class Unit_Convertor_Math:
 
     def __init__(self, inputNumber, unit1, unit2):
 
-        self.num   = inputNumber
-        self.unit1 = unit1
-        self.unit2 = unit2
+        self.num   = np.float64(inputNumber)
+        self.unit1 = str(unit1)
+        self.unit2 = str(unit2)
 
     def __repr__(self):
 
@@ -29,10 +28,10 @@ class Unit_Convertor_Math:
         else:	
         	self.num = self.check_input()
 
-        e = physical_constants['electron volt'][0]
-        k = physical_constants['Boltzmann constant'][0]   # (J/K)
-        h = physical_constants['Planck constant'][0]      # (J*s)
-        c = physical_constants['speed of light in vacuum'][0] * 1e9  # (nm/s)
+        e = np.float64(physical_constants['electron volt'][0])
+        k = np.float64(physical_constants['Boltzmann constant'][0])   # (J/K)
+        h = np.float64(physical_constants['Planck constant'][0])      # (J*s)
+        c = np.float64(physical_constants['speed of light in vacuum'][0] * 1e9)  # (nm/s)
 
         def Hz_to_eV(num):
             return h * num / e
@@ -63,4 +62,4 @@ class Unit_Convertor_Math:
 
         func = conversion_functions[(self.unit1, self.unit2)]
 
-        return float(func(self.num)), str(self.unit2)
+        return np.float64(func(self.num)), str(self.unit2)
